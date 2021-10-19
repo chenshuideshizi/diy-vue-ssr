@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Foo from "./pages/Foo";
+import Foo from "../views/Foo";
 
 Vue.use(VueRouter);
 
@@ -14,7 +14,7 @@ export default () => {
       },
       {
         path: "/bar",
-        component: () => import("./pages/Bar.vue")
+        component: () => import("../views/Bar.vue")
       }
     ]
   });

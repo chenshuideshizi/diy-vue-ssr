@@ -1,7 +1,7 @@
 // 客户端的webpack配置
 const path = require("path");
-const merge = require("webpack-merge");
-const base = require("./webpack.common");
+const { merge } = require("webpack-merge");
+const commonConfig = require("./webpack.common.config");
 const ServerRenderPlugin = require("vue-server-renderer/server-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -9,7 +9,7 @@ const resolve = dir => {
   return path.resolve(__dirname, dir);
 };
 
-module.exports = merge(base, {
+module.exports = merge(commonConfig, {
   entry: {
     // 给每个模块起名，方便在bundle进行标识
     server: resolve("../src/server-entry.js")
