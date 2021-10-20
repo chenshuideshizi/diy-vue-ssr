@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./serve.js",
+    "start:express": "node ./serve.express.js",
     "dev:client": "webpack-dev-server --config ./build/webpack.client.config.js --mode development",
     "build:client": "webpack --config ./build/webpack.client.config.js --mode production",
     "build:server": "webpack --config ./build/webpack.server.config.js --mode production"
@@ -17,6 +18,7 @@
     "@babel/preset-env": "^7.15.8",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.4.0",
+    "express": "^4.17.1",
     "html-webpack-plugin": "^5.4.0",
     "koa": "^2.13.4",
     "koa-router": "^10.1.1",
