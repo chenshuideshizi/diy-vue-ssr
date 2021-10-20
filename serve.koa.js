@@ -1,6 +1,6 @@
 const Koa = require('koa')
 const fs = require('fs')
-const KoaStatic = require('koa-static')
+const staticMiddleware = require('koa-static')
 
 const app = new Koa()
 
@@ -16,11 +16,8 @@ const renderer = createBundleRenderer(serverBundle, {
   clientManifest // （可选）客户端构建 manifest
 })
 
-app.use(KoaStatic('./dist'))
-
 app.use(async (ctx, next) => {
   const context = { url: ctx.url }
-
   try {
     // 根据请求路径去返回给server-entry url路径
     ctx.body = await new Promise((resolve, reject) => {
@@ -38,6 +35,8 @@ app.use(async (ctx, next) => {
 
   await next()
 })
+
+app.use(staticMiddleware('./dist'))
 
 app.listen(3000, () => {
   console.log(`node serve run at port http://localhost:3000`)
