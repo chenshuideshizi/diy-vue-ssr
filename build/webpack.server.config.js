@@ -2,6 +2,12 @@
 const { merge } = require('webpack-merge')
 const commonConfig = require('./webpack.common.config')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
+
+function resolve(pathName) {
+  return path.resolve(__dirname, pathName)
+}
 
 module.exports = merge(commonConfig, {
   entry: '/src/entry-server.js',
@@ -15,6 +21,10 @@ module.exports = merge(commonConfig, {
     libraryTarget: 'commonjs2'
   },
   plugins: [
-    new VueSSRServerPlugin()
+    new VueSSRServerPlugin(),
+    new HtmlWebpackPlugin({ // TODO: ？不知道为什么不会生成 html 文件
+      filename: 'index.ssr.html',
+      template: resolve('../public/index.ssr.html')
+    })
   ]
 })
